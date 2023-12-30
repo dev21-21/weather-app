@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="icon" href="./images/weather-app.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card ms-5 me-5">
+
+                    <div class="row same"><label id="label"></label></div>
+                    <div class="row">
+                        <div class="col-lg-6 input ps-5 pe-5">
+                            <input type="text" class="form-control ps-1 mt-5 " placeholder="Enter the Place"
+                                id="inputdata">
+                        </div>
+                        <div class="col-lg-6 buttondiv"><input type="button" class="btn mt-5 button " value="Search"
+                                onclick="Search()"></div>
+                    </div>
+                    <div>
+
+                        <div class="row cloundsimage"><img src="" id="img" style="width: 170px;  "></div>
+                        <div class="same">
+                            <h4 class="cloundname"></h4>
+                        </div>
+
+                        <div class="row same">
+                            <h2 id="temp"></h2>
+                        </div>
+                        <div class="row same">
+                            <h1 class="">
+                                <h2 class="place"></h2>
+                            </h1>
+                        </div>
+                        <div class="details row">
+                            <div class="col ps-4 pt-3 humdivv">
+                                <img src="" id="humidityimg">
+                                <div>
+                                    <p class="hum mb-0 ps-2"></p>
+                                    <p class="mb-0 ps-2" id="humidity"></p>
+                                </div>
+                            </div>
+                            <div class="col ps-5 pt-3 humdivv">
+                                <img src="" id="windimg">
+                                <div>
+                                    <p class="ws mb-0 ps-2"></p>
+                                    <p class="mb-0 ps-2" id="Windspeed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <script>
+        const apikey = 'dc8a75dedc8b15551a7483b715cce760'
+        async function Search() {
+            const inputelement = document.getElementById('inputdata')
+            const inputdata = inputelement.value
+            if (inputdata == '') {
+                document.getElementById('label').innerHTML = ("Please enter a place")
+            }
+            else {
+                document.getElementById('label').innerHTML = ("")
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputdata}&appid=${apikey}&units=metric`)
+                var data = await response.json();
+                if (data.name === undefined) {
+
+                    document.querySelector('.place').innerHTML = "Please enter the correct name"
+                }
+                else {
+                    document.querySelector('.place').innerHTML = `${data.name}`
+                }
+
+                document.getElementById('temp').innerHTML = `${data.main.temp}°C `
+                document.querySelector('.hum').innerHTML = ` ${data.main.humidity}%`
+                document.querySelector('.cloundname').innerHTML = `${data.weather[0].main}`
+
+                if (data.weather[0].main == 'Clouds') {
+                    img.src = './images/clouds.png'
+                }
+                else if (data.weather[0].main == 'Clear') {
+                    img.src = "./images/clear.png";
+                }
+                else if (data.weather[0].main == 'Drizzle') {
+                    img.src = "./images/drizzle.png";
+                }
+                else if (data.weather[0].main == 'Mist') {
+                    img.src = "./images/mist.png";
+                }
+                else if (data.weather[0].main == 'Rain') {
+                    img.src = "./images/rain.png";
+                }
+                else if (data.weather[0].main == 'Snow') {
+                    img.src = "./images/snow.png";
+                }
+                document.getElementById('Windspeed').innerHTML = 'Windspeed'
+                document.getElementById('humidity').innerHTML = 'Humidity'
+                document.getElementById('humidityimg').src = './images/humidity.png'
+                document.getElementById('windimg').src = './images/wind.png'
+                document.querySelector('.ws').innerHTML = `${data.wind.speed}km/h`
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>

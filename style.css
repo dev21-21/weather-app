@@ -1,0 +1,108 @@
+*{
+font-family: 'Poppins', sans-serif;
+font-weight: 500;
+
+}
+body{
+    background-color: black;
+}
+.card{
+    margin-top: 50px;
+    border-radius: 20px;
+    border: solid 2px #79AC78;
+    height: 100%;
+    background-color: #79AC78;
+    
+    
+}
+#inputdata{
+    background-color: #D0E7D2 !important;
+        border: 2px solid D0E7D2;
+        color: black !important;
+        height: 40px;
+}
+.input{
+    text-align: center;
+    
+}
+.buttondiv{
+    text-align: center;
+    
+}
+.button{
+    border: 2px solid #D0E7D2;
+        color: #79AC78;
+        background-color: #D0E7D2;
+}
+h1,h2,h3,h4,h5,p{
+    color: #D0E7D2;
+    
+}
+::placeholder{
+        color: #79AC78!important;
+        
+}
+.same{
+    text-align: center;
+}
+.cloundsimage{
+    text-align: center;
+    align-items: center;
+    justify-content: center; 
+}
+#temp{
+    font-size: 70px;
+}
+@media only screen and (max-width: 600px) {
+    #temp {
+            font-size: 40px;
+        }
+}
+@media only screen and (min-width: 768px) {
+#temp {
+        font-size: 40px;
+    }
+}
+
+.humiditydiv img{
+    width:50px ;
+}
+.humimg{
+    padding-right: 0%;
+}
+
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    
+    
+    
+}
+.button:hover{
+    background-color: #D0E7D2;
+}
+.humdivv{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+}
+.col{
+    display: flex;
+
+        
+}
+.col img{
+    width: 40px;
+    
+}
+.link{
+    border: 2px solid white;
+    padding: 10px;
+border-radius: 20%;
+}
+input[type=text]{
+    padding: 15px!important;
+}
